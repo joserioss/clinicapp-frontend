@@ -1,7 +1,8 @@
+import { Paciente } from './../../../_model/paciente';
 import { PacienteService } from './../../../_service/paciente.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-paciente-edicion',
@@ -18,6 +19,7 @@ export class PacienteEdicionComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private pacienteServive: PacienteService
     ) { }
 
@@ -54,7 +56,28 @@ export class PacienteEdicionComponent implements OnInit {
   }
 
   operar(){
+    let paciente = new Paciente();
+    paciente.idPaciente = this.form.value['id'];
+    paciente.nombres = this.form.value['nombres'];
+    paciente.apellidos = this.form.value['apellidos'];
+    paciente.rut = this.form.value['rut'];
+    paciente.direccion = this.form.value['direccion'];
+    paciente.telefono = this.form.value['telefono'];
 
+    if(this.edicion){
+      this.pacienteServive.modificar(paciente).subscribe( () => {
+        this.pacienteServive.listar().subscribe(data => {
+          this.pacienteServive.pacienteCambio.next(data);
+        });
+      });
+    }else{
+      this.pacienteServive.registrar(paciente).subscribe( () => {
+        this.pacienteServive.listar().subscribe(data => {
+          this.pacienteServive.pacienteCambio.next(data);
+        });
+      });
+    }
+    this.router.navigate(['paciente']);
   }
 
 }
