@@ -15,4 +15,8 @@ export class PacienteService {
   listar() {
     return this.http.get<Paciente[]>(this.url);
   }
+
+  listarPorId(idPaciente: number){
+    return this.http.get<Paciente>(`${this.url}/${idPaciente}`);
+  }
 }
