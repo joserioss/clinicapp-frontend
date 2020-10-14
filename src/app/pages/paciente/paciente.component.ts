@@ -36,4 +36,12 @@ export class PacienteComponent implements OnInit {
   filtrar(valor: string) {
     this.dataSource.filter = valor.trim().toLowerCase();
   }
+
+  eliminar(idPaciente: number){
+    this.pacienteService.eliminar(idPaciente).subscribe( () => {
+      this.pacienteService.listar().subscribe(data => {
+        this.pacienteService.pacienteCambio.next(data);
+      });
+    });
+  }
 }

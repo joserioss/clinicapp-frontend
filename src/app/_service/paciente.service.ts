@@ -30,4 +30,8 @@ export class PacienteService {
   modificar(paciente: Paciente){
     return this.http.put(this.url, paciente);
   }
+
+  eliminar(idPaciente: number){
+    return this.http.delete(`${this.url}/${idPaciente}`);
+  }
 }
