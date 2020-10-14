@@ -68,12 +68,14 @@ export class PacienteEdicionComponent implements OnInit {
       this.pacienteServive.modificar(paciente).subscribe( () => {
         this.pacienteServive.listar().subscribe(data => {
           this.pacienteServive.pacienteCambio.next(data);
+          this.pacienteServive.mensajeCambio.next('SE MODIFICO');
         });
       });
     }else{
       this.pacienteServive.registrar(paciente).subscribe( () => {
         this.pacienteServive.listar().subscribe(data => {
           this.pacienteServive.pacienteCambio.next(data);
+          this.pacienteServive.mensajeCambio.next('SE REGISTRO');
         });
       });
     }

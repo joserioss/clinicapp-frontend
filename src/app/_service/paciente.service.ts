@@ -9,7 +9,11 @@ import { Subject } from 'rxjs';
 })
 export class PacienteService {
 
+  /**
+   * Variables reactivas
+   */
   pacienteCambio = new Subject<Paciente[]>();
+  mensajeCambio = new Subject<string>();
 
   url: string = `${environment.HOST}/pacientes`;
 
@@ -29,5 +33,9 @@ export class PacienteService {
 
   modificar(paciente: Paciente){
     return this.http.put(this.url, paciente);
+  }
+
+  eliminar(idPaciente: number){
+    return this.http.delete(`${this.url}/${idPaciente}`);
   }
 }
