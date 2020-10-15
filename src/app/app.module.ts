@@ -9,12 +9,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PacienteComponent } from './pages/paciente/paciente.component';
 import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paciente-edicion.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MedicoComponent } from './pages/medico/medico.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PacienteComponent,
-    PacienteEdicionComponent
+    PacienteEdicionComponent,
+    MedicoComponent
   ],
   imports: [
     BrowserModule,
