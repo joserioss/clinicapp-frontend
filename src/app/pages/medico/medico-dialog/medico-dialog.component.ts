@@ -28,6 +28,25 @@ export class MedicoDialogComponent implements OnInit {
     this.medico.fotoUrl = this.data.fotoUrl;
   }
 
+  operar(){
+    if(this.medico != null && this.medico.idMedico > 0){
+      //MODIFICAR
+      this.medicoService.modificar(this.medico).subscribe( () =>{
+        this.medicoService.listar().subscribe( data => {
+          this.medicoService.medicoCambio.next(data);
+        });
+      });
+    }else{
+      //REGISTRAR
+      this.medicoService.registrar(this.medico).subscribe( () =>{
+        this.medicoService.listar().subscribe( data => {
+          this.medicoService.medicoCambio.next(data);
+        });
+      });
+    }
+    this.dialogRef.close();
+  }
+
   cancelar(){
     this.dialogRef.close();
   }

@@ -22,6 +22,12 @@ export class MedicoComponent implements OnInit {
   constructor(private medicoService: MedicoService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.medicoService.medicoCambio.subscribe( data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+
     this.medicoService.listar().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
@@ -33,10 +39,16 @@ export class MedicoComponent implements OnInit {
     this.dataSource.filter = valor.trim().toLowerCase();
   }
 
-  abrirDialogo(medico: Medico){
+  /**
+   *
+   * @param medico opcional, en el caso de crear un nuevo medico estaria vacio
+   * y en el caso de actualizar ingresaria los valores de medico
+   */
+  abrirDialogo(medico? : Medico){
+    let med = medico != null ? medico : new Medico();
     this.dialog.open(MedicoDialogComponent,{
       width: '250px',
-      data: medico
+      data: med
     });
   }
 }

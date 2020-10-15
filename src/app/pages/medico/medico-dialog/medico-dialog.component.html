@@ -11,6 +11,7 @@
   <mat-form-field>
     <input matInput placeholder="foto" [(ngModel)]= "medico.fotoUrl">
   </mat-form-field>
+  <img [src] = "medico.fotoUrl" alt="foto del medico" width="50%" height="50%" *ngIf= "medico.fotoUrl != null">
 </div>
 <button mat-mat-raised-button color="primary" (click)= "operar()">Aceptar</button>
 <button mat-mat-raised-button color="accent" (click)= "cancelar()">Cancelar</button>
