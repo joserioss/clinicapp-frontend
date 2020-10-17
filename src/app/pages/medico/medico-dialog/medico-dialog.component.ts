@@ -34,6 +34,7 @@ export class MedicoDialogComponent implements OnInit {
       this.medicoService.modificar(this.medico).subscribe( () =>{
         this.medicoService.listar().subscribe( data => {
           this.medicoService.medicoCambio.next(data);
+          this.medicoService.mensajeCambio.next('SE MODIFICO');
         });
       });
     }else{
@@ -41,6 +42,7 @@ export class MedicoDialogComponent implements OnInit {
       this.medicoService.registrar(this.medico).subscribe( () =>{
         this.medicoService.listar().subscribe( data => {
           this.medicoService.medicoCambio.next(data);
+          this.medicoService.mensajeCambio.next('SE REGISTRO');
         });
       });
     }

@@ -6,6 +6,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
+import { switchMap } from 'rxjs/operators'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-medico',
@@ -19,13 +21,19 @@ export class MedicoComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private medicoService: MedicoService, private dialog: MatDialog) { }
+  constructor(private medicoService: MedicoService, private dialog: MatDialog, private snack: MatSnackBar) { }
 
   ngOnInit(): void {
     this.medicoService.medicoCambio.subscribe( data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
+    });
+
+    this.medicoService.mensajeCambio.subscribe(data => {
+      this.snack.open(data, 'AVISO', {
+        duration: 2000
+      });
     });
 
     this.medicoService.listar().subscribe(data => {
@@ -51,4 +59,17 @@ export class MedicoComponent implements OnInit {
       data: med
     });
   }
+
+  /**
+   * Esta funcion eliminar debiese ser el idoneo a realizar en programacion reactiva..
+   */
+  eliminar(medico: Medico){
+    this.medicoService.eliminar(medico.idMedico).pipe(switchMap( ()=> {
+      return this.medicoService.listar();
+    })).subscribe(data => {
+      this.medicoService.medicoCambio.next(data);
+      this.medicoService.mensajeCambio.next('SE ELIMINO');
+    });
+  }
+
 }
