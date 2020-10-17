@@ -1,5 +1,7 @@
 <router-outlet></router-outlet>
 
+<mat-toolbar>Pacientes</mat-toolbar>
+
 <div class="example-header">
   <mat-form-field>
     <input matInput (keyup)= "filtrar($event.target.value)" placeholder= "Buscar paciente">
@@ -7,6 +9,7 @@
 </div>
 
 <mat-table [dataSource]= "dataSource" matSort>
+
   <ng-container matColumnDef="idPaciente">
     <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
     <mat-cell *matCellDef= "let row"> {{row.idPaciente}} </mat-cell>

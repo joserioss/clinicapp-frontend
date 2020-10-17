@@ -8,13 +8,25 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PacienteComponent } from './pages/paciente/paciente.component';
 import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paciente-edicion.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MedicoComponent } from './pages/medico/medico.component';
+import { MedicoDialogComponent } from './pages/medico/medico-dialog/medico-dialog.component';
+import { EspecialidadComponent } from './pages/especialidad/especialidad.component';
+import { ExamenComponent } from './pages/examen/examen.component';
+import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edicion.component';
+import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PacienteComponent,
-    PacienteEdicionComponent
+    PacienteEdicionComponent,
+    MedicoComponent,
+    MedicoDialogComponent,
+    EspecialidadComponent,
+    ExamenComponent,
+    ExamenEdicionComponent,
+    EspecialidadEdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
