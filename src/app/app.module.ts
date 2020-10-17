@@ -11,6 +11,10 @@ import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paci
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MedicoComponent } from './pages/medico/medico.component';
 import { MedicoDialogComponent } from './pages/medico/medico-dialog/medico-dialog.component';
+import { EspecialidadComponent } from './pages/especialidad/especialidad.component';
+import { ExamenComponent } from './pages/examen/examen.component';
+import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edicion.component';
+import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { MedicoDialogComponent } from './pages/medico/medico-dialog/medico-dialo
     PacienteComponent,
     PacienteEdicionComponent,
     MedicoComponent,
-    MedicoDialogComponent
+    MedicoDialogComponent,
+    EspecialidadComponent,
+    ExamenComponent,
+    ExamenEdicionComponent,
+    EspecialidadEdicionComponent
   ],
   imports: [
     BrowserModule,
