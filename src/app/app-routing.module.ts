@@ -1,3 +1,4 @@
+import { ConsultaComponent } from './pages/consulta/consulta.component';
 import { EspecialidadEdicionComponent } from './pages/especialidad/especialidad-edicion/especialidad-edicion.component';
 import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edicion.component';
 import { EspecialidadComponent } from './pages/especialidad/especialidad.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
       {path: 'edicion/:id', component: EspecialidadEdicionComponent}
     ]
   },
-  {path: 'medico', component: MedicoComponent}
+  { path: 'medico', component: MedicoComponent},
+  { path: 'consulta', component: ConsultaComponent}
 ];
 
 @NgModule({
